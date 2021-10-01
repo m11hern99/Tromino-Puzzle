@@ -75,7 +75,7 @@ public class Tromino {
 			System.out.println();
 		}
 		else {
-			//find null of subsquares.
+			//find null of sub-squares.
 			for(int y=b; y < (b+squareSize); y++) {
 				for(int x=a; x <(a+squareSize);x++) {
 					if(square[x][y].equals("null")) {
@@ -87,7 +87,8 @@ public class Tromino {
 			}
 			//if null falls in quadrant 1 
 			if( (a <= i && i < ( a+ squareSize/2) ) && (b <= j && j < (b+squareSize/2) ) ) {
-				
+				//recursive call
+				Tri(n-1,a,b,0,0 ); // 1st quadrant call 
 				
 				//find center
 				int x = a + squareSize/2;
@@ -98,15 +99,15 @@ public class Tromino {
 				square[x][y-1] = "null";
 				
 				//recursive calls
-				Tri(n-1,a,b,0,0 ); // 1st quadrant call 
-				Tri(n-1,a,b+squareSize/2,0,0); //4th quadrant call
 				Tri(n-1,a+squareSize/2, b,0,0 ); //2nd quadrant call
 				Tri(n-1,a+squareSize/2,b+squareSize/2,0,0); //3rd quadrant call
+				Tri(n-1,a,b+squareSize/2,0,0); //4th quadrant call
 				
 			}
 			// if null falls in quadrant 2
 			else if( ((a+squareSize/2) <= i && i < (a+squareSize)) && ( j >= b && j < (b+squareSize/2) ) ){
-				
+				//recursive call
+				Tri(n-1,a+squareSize/2, b,0,0 ); //2nd quadrant call
 				
 				//find center
 				int x = a + squareSize/2;
@@ -117,15 +118,15 @@ public class Tromino {
 				square[x][y] = "null";
 				
 				//recursive calls
-				Tri(n-1,a,b,0,0 ); // 1st quadrant call 
-				Tri(n-1,a,b+squareSize/2,0,0); //4th quadrant call
-				Tri(n-1,a+squareSize/2, b,0,0 ); //2nd quadrant call
 				Tri(n-1,a+squareSize/2,b+squareSize/2,0,0); //3rd quadrant call
+				Tri(n-1,a,b+squareSize/2,0,0); //4th quadrant call
+				Tri(n-1,a,b,0,0 ); // 1st quadrant call 
 
 			}
 			// if null falls in quadrant 3
 			else if( (i >= (a+squareSize/2) && i < (a+squareSize)) && ( j >= (b+squareSize/2) && j < (b+squareSize))) {
-								
+				Tri(n-1,a+squareSize/2,b+squareSize/2,0,0); //3rd quadrant call	
+				//recursive call
 				//find center
 				int x = a + squareSize/2;
 				int y = b + squareSize/2;
@@ -135,16 +136,17 @@ public class Tromino {
 				square[x][y-1] = "null";
 				
 				//recursive calls
-				Tri(n-1,a,b,0,0 ); // 1st quadrant call 
 				Tri(n-1,a,b+squareSize/2,0,0); //4th quadrant call
+				Tri(n-1,a,b,0,0 ); // 1st quadrant call 
 				Tri(n-1,a+squareSize/2, b,0,0 ); //2nd quadrant call
-				Tri(n-1,a+squareSize/2,b+squareSize/2,0,0); //3rd quadrant call
+
 				
 			}
 			// if null falls in quadrant 4
 			// for some reason quadrant for is not being reached when n-1.
 			else if((i >= a && i < (a+squareSize/2)) && ( j >= (b+squareSize/2) && j < b+squareSize)) {
-				
+				//recursive call
+				Tri(n-1,a,b+squareSize/2,0,0); //4th quadrant call
 				
 				//find center
 				int x = a + squareSize/2;
@@ -156,7 +158,6 @@ public class Tromino {
 				
 				//recursive calls
 				Tri(n-1,a,b,0,0 ); // 1st quadrant call 
-				Tri(n-1,a,b+squareSize/2,0,0); //4th quadrant call
 				Tri(n-1,a+squareSize/2, b,0,0 ); //2nd quadrant call
 				Tri(n-1,a+squareSize/2,b+squareSize/2,0,0); //3rd quadrant call
 					
